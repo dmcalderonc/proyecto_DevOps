@@ -1,0 +1,27 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# --- Django ---
+db.sqlite3
+db.sqlite3-journal
+staticfiles/
+media/
+
+# --- IDEs / Editores ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Docker ---
+# No ignoramos el Dockerfile, pero sí archivos temporales si los hubiera
+.dockerignore
+
+# --- Logs y Temporales ---
+*.log
+.DS_Store

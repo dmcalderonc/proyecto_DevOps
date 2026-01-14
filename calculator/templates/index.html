@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Pro | CI/CD Django</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .calc-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        .btn-calculate {
+            background: #764ba2;
+            color: white;
+            border: none;
+            transition: all 0.3s;
+        }
+        .btn-calculate:hover {
+            background: #667eea;
+            transform: translateY(-2px);
+            color: white;
+        }
+        .result-badge {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card calc-card p-4">
+                    <div class="text-center mb-4">
+                        <h2 class="fw-bold text-dark">Django Calc</h2>
+                        <span class="badge bg-success">Status: CI/CD Active</span>
+                    </div>
+                    
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label text-muted small fw-bold">NÚMERO 1</label>
+                            <input type="number" name="n1" step="any" class="form-control form-control-lg" placeholder="0" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label text-muted small fw-bold">OPERACIÓN</label>
+                            <select name="op" class="form-select form-select-lg">
+                                <option value="sumar">➕ Sumar</option>
+                                <option value="restar">➖ Restar</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="form-label text-muted small fw-bold">NÚMERO 2</label>
+                            <input type="number" name="n2" step="any" class="form-control form-control-lg" placeholder="0" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-calculate btn-lg w-100 shadow-sm">
+                            Calcular Resultado
+                        </button>
+                    </form>
+
+                    {% if resultado is not None %}
+                    <div class="mt-4 pt-3 border-top text-center">
+                        <p class="text-muted mb-1">RESULTADO</p>
+                        <div class="result-badge">{{ resultado }}</div>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <p class="text-center text-white-50 mt-4 small">
+                    Pipeline ejecutado con GitHub Actions & Docker
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
