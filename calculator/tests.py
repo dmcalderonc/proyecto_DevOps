@@ -10,3 +10,8 @@ class CalcTests(TestCase):
         # Verificamos que 'resultado' existe en el contexto antes de comparar
         self.assertIn('resultado', response.context)
         self.assertEqual(response.context['resultado'], 15.0)
+
+    def test_operacion_division(self):
+        c = Client()
+        response = c.post('/', {'n1': '10', 'n2': '2', 'op': 'dividir'})
+        self.assertEqual(response.context['resultado'], 5.0)
